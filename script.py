@@ -25,6 +25,13 @@ parser.add_argument(
                     action="store",
                     default="Sam",
                     )
+parser.add_argument(
+                    "--no-voice",
+                    dest="tts_no_voice",
+                    help="silences tts voice",
+                    action="store_true",
+                    default=False,
+                    )
 args = parser.parse_args()
 
 
@@ -105,7 +112,7 @@ def main(string:str, voice:str) -> str:
     """
     returns tts sound
     """
-
+    #exit()
     if len(string) > 4088:
         print("Text too long")
     print("getting voice data")
@@ -129,4 +136,6 @@ if __name__ == "__main__":
 
     tts_sound_path = main(string=args.tts_string, voice=selected_voice)
     print(time.time() - s_time)
-    playsound(tts_sound_path)
+    if not args.tts_no_voice:
+        playsound(tts_sound_path)
+    cache.clean_up()
