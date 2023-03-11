@@ -49,7 +49,7 @@ def number_name_to_number(string:str) -> str:
 
 def get_voices() -> dict:
     """dwas"""
-    cache_key = f"voices"
+    cache_key = "voices"
     cached = cache.get(cache_key)
     if cached is not None:
         return cached
